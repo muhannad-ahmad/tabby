@@ -1,5 +1,6 @@
 mod index;
 mod repository;
+mod tags;
 
 use job_scheduler::{Job, JobScheduler};
 use tabby_common::config::Config;
@@ -20,7 +21,9 @@ pub fn scheduler(now: bool) {
         repository::sync_repositories(&config);
 
         info!("Indexing repositories...");
-        index::index_repositories(&config);
+        // index::index_repositories(&config);
+        tags::tag_repositories(&config);
+
     };
 
     if now {
